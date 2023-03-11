@@ -5,10 +5,12 @@ import DetailsPrice from "../components/DetailsPrice";
 
 const Details = () => {
     return ( 
-        <div>
+        <div className="flex flex-col justify-between w-full h-[840px]">
+            <div>
             <DetailsHeader/>
-            <Options/>
             <DetailsSlider/>
+            <Options/>
+            </div>
             <DetailsPrice/>
         </div>
      );
