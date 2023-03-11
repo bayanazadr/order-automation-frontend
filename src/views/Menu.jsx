@@ -44,25 +44,25 @@ const foods= [
     price: '1800 tg'
     },
     {
-        img: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8YnVyZ2VyfGVufDB8fDB8fA%3D%3D&w=1000&q=80',
-        name: 'Double Burger',
-        price: '1200 tg'
-        },
-        {
-        img: 'https://www.simplyrecipes.com/thmb/I4razizFmeF8ua2jwuD0Pq4XpP8=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/__opt__aboutcom__coeus__resources__content_migration__simply_recipes__uploads__2019__09__easy-pepperoni-pizza-lead-4-82c60893fcad4ade906a8a9f59b8da9d.jpg',
-        name: 'Margarita Pizza',
-        price: '3500 tg'
-        },
-        {
-        img: 'https://thecozycook.com/wp-content/uploads/2022/08/Chicken-Alfredo-Pasta-1-1.jpg',
-        name: 'Fetuccine Pasta',
-        price:'2600 tg'
-        },
-        {
-        img: 'https://blog.urbanadventures.com/wp-content/uploads/2018/05/samarkand_plov.jpg',
-        name: 'kazakh Plov',
-        price: '1800 tg'
-        },
+    img: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8YnVyZ2VyfGVufDB8fDB8fA%3D%3D&w=1000&q=80',
+    name: 'Double Burger',
+    price: '1200 tg'
+    },
+    {
+    img: 'https://www.simplyrecipes.com/thmb/I4razizFmeF8ua2jwuD0Pq4XpP8=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/__opt__aboutcom__coeus__resources__content_migration__simply_recipes__uploads__2019__09__easy-pepperoni-pizza-lead-4-82c60893fcad4ade906a8a9f59b8da9d.jpg',
+    name: 'Margarita Pizza',
+    price: '3500 tg'
+    },
+    {
+    img: 'https://thecozycook.com/wp-content/uploads/2022/08/Chicken-Alfredo-Pasta-1-1.jpg',
+    name: 'Fetuccine Pasta',
+    price:'2600 tg'
+    },
+    {
+    img: 'https://blog.urbanadventures.com/wp-content/uploads/2018/05/samarkand_plov.jpg',
+    name: 'kazakh Plov',
+    price: '1800 tg'
+    },
 ]
     return ( 
         <div className="w-full">
