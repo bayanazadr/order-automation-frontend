@@ -1,23 +1,30 @@
 import FoodCard from "../components/FoodCard";
 import Navbar from "../components/Navbar";
+import CategoryCard from "../components/CategoryCard";
+import PromotionCard from "../components/PromotionCard";
+import Search from "../components/Search";
+import category1 from '../images/category1.png'
+import category2 from '../images/category2.png'
+import category3 from '../images/category3.png'
+import category4 from '../images/category4.png'
 
 const Menu = () => {
 const categories= [
     {
-    img: 'https://png.pngtree.com/png-vector/20190129/ourlarge/pngtree-menu-vector-icon-png-image_355811.jpg',
+    img: category1,
     name: 'All'
     },
     {
-    img: '',
-    name: 'All'
+    img: category2,
+    name: 'Burger'
     },
     {
-    img: '',
-    name: 'All'
+    img: category3,
+    name: 'Pizza'
     },
     {
-    img: '',
-    name: 'All'
+    img: category4,
+    name: 'Bar'
     },
 ]
 
@@ -66,7 +73,16 @@ const foods= [
 ]
     return ( 
         <div className="w-full">
+          <Search/>
+            <div className="flex flex-nowrap justify-center space-x-3.5 mb-10">
+                {categories.map((category) => (
+                    <CategoryCard img={category.img} key={category.name} name={category.name} />
+                ))}
+            </div>
             <div className="bg-[#324A59] w-full">
+            <p className='text-left ml-6 text-2xl font-medium text-[#D8D8D8] py-5'>Promotions</p>
+                <PromotionCard/>
+                <h1 className="text-left ml-6 text-2xl font-normal text-[#D8D8D8] py-5">Popular</h1>
             <div className="w-full flex flex-wrap justify-center">
                 {foods.map((food) => (
                     <FoodCard img={food.img} key={food.name} name={food.name} price={food.price}/>

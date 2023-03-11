@@ -4,7 +4,7 @@ const CategoryCard = (props) => {
            <div>
             <img className="rounded-2xl" src={props.img}></img>
                 </div> 
-            <p className="text-[#001833] font-semibold">{props.name}</p>
+            <p className="text-[#858585] font-semibold">{props.name}</p>
         </div>
     );
 }
