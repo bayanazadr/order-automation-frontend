@@ -1,8 +1,10 @@
-import stroke from '../images/stroke.png'
+import BasketHeader from "../components/BasketHeader";
 const Basket = () => {
     return ( 
-        <div className='h-[14px] w-[24px] ml-8'>
-            <img src={stroke}/>
+        <div className="flex flex-col justify-between w-full h-[840px]">
+            <div>
+                <BasketHeader/>
+            </div>
         </div>
      );
 }
