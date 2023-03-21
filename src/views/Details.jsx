@@ -5,8 +5,8 @@ import DetailsPrice from "../components/DetailsPrice";
 
 const Details = () => {
     return ( 
-        <div className="flex flex-col justify-between w-full h-[840px]">
-            <div>
+        <div className="flex flex-col items-center justify-between w-full h-[840px]">
+            <div className="w-full">
             <DetailsHeader/>
             <DetailsSlider/>
             <Options/>

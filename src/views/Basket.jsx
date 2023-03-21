@@ -1,18 +1,19 @@
 import BasketItem from '../components/BasketItem';
-import stroke from '../images/stroke.png'
 import BasketHeader from '../components/BasketHeader'
+import BasketPrice from '../components/BasketPrice';
 const Basket = () => {
     return ( 
-        <div className='w-full'>
+        <div className='w-full h-[100vh] flex flex-col justify-between'>
             <div>
-                <BasketHeader />
-            </div>
+            <BasketHeader />
+            <p className='text-left ml-6 text-2xl font-medium text-[#001833] py-5'>My Basket</p>
             <div className='w-full flex flex-col items-center space-y-5'>
             <BasketItem/>
             <BasketItem/>
             <BasketItem/>
             </div>
-           
+            </div>
+           <BasketPrice/>
         </div>
      );
 }

@@ -75,8 +75,7 @@ const foods= [
     const [dishes, setDishes] = useState()
     const [searchField, setSearchField] = useState("");
     // const fetchDishes = async() => {
-    //     await axios.get("https://order-automation-debug-server.onrender.com/api/dishes", 
-    //     {headers: {"Access-Control-Allow-Credentials": true}})
+    //     await axios.get("https://order-automation-debug-server.onrender.com/api/dishes")
     //     .then((res) => {
     //         console.log(res)
     //     })
