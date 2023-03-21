@@ -24,3 +24,13 @@ function App() {
 }
 
 export default App;
+
+// вот api для dish: 
+// get all as list : https://order-automation-debug-server.onrender.com/api/dishes
+
+// get one: https://order-automation-debug-server.onrender.com/api//getDish/{uuid}
+
+// для category: 
+// get all as list: https://order-automation-debug-server.onrender.com/api/getCategories
+
+// get one: https://order-automation-debug-server.onrender.com/api/getCategory/{id}

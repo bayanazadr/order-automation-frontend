@@ -7,9 +7,10 @@ import category1 from '../images/category1.png'
 import category2 from '../images/category2.png'
 import category3 from '../images/category3.png'
 import category4 from '../images/category4.png'
-
+import { useEffect, useState } from "react";
+import axios from 'axios';
 const Menu = () => {
-const categories= [
+    const categories= [
     {
     img: category1,
     name: 'All'
@@ -71,9 +72,41 @@ const foods= [
     price: '1800 tg'
     },
 ]
+    const [dishes, setDishes] = useState()
+    const [searchField, setSearchField] = useState("");
+    // const fetchDishes = async() => {
+    //     await axios.get("https://order-automation-debug-server.onrender.com/api/dishes", 
+    //     {headers: {"Access-Control-Allow-Credentials": true}})
+    //     .then((res) => {
+    //         console.log(res)
+    //     })
+    //     .catch((err) => {
+    //         console.log(err)
+    //     })
+    // }
+    // useEffect(() => {
+    //     fetchDishes()
+    // }, [])
+
+    const handleChange = e => {
+        setSearchField(e.target.value);
+    }
+
+    const filteredDishes = foods.filter(
+        person => {
+          return (
+            person
+            .name
+            .toLowerCase()
+            .includes(searchField.toLowerCase())
+          );
+        }
+      );
+
+
     return ( 
         <div className="w-full">
-          <Search/>
+          <Search handleChange={handleChange}/>
             <div className="flex flex-nowrap justify-center space-x-3.5 mb-10">
                 {categories.map((category) => (
                     <CategoryCard img={category.img} key={category.name} name={category.name} />
@@ -84,7 +117,7 @@ const foods= [
                 <PromotionCard/>
                 <h1 className="text-left ml-6 text-2xl font-normal text-[#D8D8D8] py-5">Popular</h1>
             <div className="w-full flex flex-wrap justify-center">
-                {foods.map((food) => (
+                {filteredDishes.map((food) => (
                     <FoodCard img={food.img} key={food.name} name={food.name} price={food.price}/>
                 ))}
             </div>
