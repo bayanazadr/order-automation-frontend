@@ -1,9 +1,9 @@
 import burger_icon from '../images/burger_icon.png'
-const Options = () => {
+const Options = ({title}) => {
     return ( 
         <div className="w-full h-auto">
             <div className="w-full flex h-16 items-center justify-evenly border-b-2 border-[#F4F5F7]">
-                <p className="text-[#001833] text-base font-medium">Chicken Burger</p>
+                <p className="text-[#001833] text-base font-medium">{title}</p>
                 <div className="flex h-9 justify-around items-center text-white">
                     <button className="w-7 bg-[#324A59] rounded-tl-3xl rounded-bl-3xl">-</button>
                     <p className="w-7 bg-[#324A59]">1</p>
