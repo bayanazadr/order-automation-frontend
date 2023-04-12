@@ -7,7 +7,7 @@ const Navbar = () => {
     const navigateToHome = () => navigate('/')
     const navigateToBasket = () => navigate('/basket')
     return ( 
-        <div className="fixed rounded-t-2xl top-[94vh] w-full h-14 bg-[#F7F8FB]">
+        <div className="fixed z-50 rounded-t-2xl top-[85vh] w-full h-32 bg-white">
             <div className="w-full h-full flex justify-evenly items-center">
                 <img className='w-10 h-10 mt-1' onClick={navigateToHome} src={home}/>
                 <img className='w-9 h-9 mb-1' onClick={navigateToBasket} src={basket}/>
