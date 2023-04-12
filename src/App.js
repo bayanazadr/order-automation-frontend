@@ -4,6 +4,8 @@ import Menu from './views/Menu';
 import Details from './views/Details';
 import Basket from './views/Basket';
 import Slider from './views/Slider';
+import Payments from './views/Payments';
+import NewCreditCard from './views/NewCreditCard';
 function App() {
   return (
     <div className="App">
@@ -13,6 +15,8 @@ function App() {
           <Route path="/basket" element={<Basket/>} />
           <Route path="/food-details/:dishId" element={<Details/>} />
           <Route path="/slider" element={<Slider/>} />
+          <Route path="/payment" element={<Payments/>} />
+          <Route path="/card" element={<NewCreditCard/>} />
       </Routes>
     </BrowserRouter>
     </div>
