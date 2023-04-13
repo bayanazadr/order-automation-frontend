@@ -1,7 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useSwipeable } from 'react-swipeable';
 
-const Slider = (props) => {
+const RestaurantSlider = (props) => {
+   
   const [currentIndex, setCurrentIndex] = useState(0);
   const sliderRef = useRef(null);
 
@@ -33,10 +34,10 @@ const Slider = (props) => {
   }, [currentIndex]);
 
   return (
-    <div className="  h-52 flex flex-col relative w-full max-w-lg mx-auto overflow-hidden">
+    <div className="mb-10 h-96 bg-red-500 flex flex-col relative w-full max-w-lg mx-auto overflow-hidden">
       <div
         ref={sliderRef}
-        className=" flex w-full h-44 transform transition-transform duration-500 ease-in-out"
+        className="bg-green-500 flex w-full h-44 transform transition-transform duration-500 ease-in-out"
         style={{ transform: `translateX(-${currentIndex * 100}%)` }}
         {...swipeHandlers}
       >
@@ -46,18 +47,18 @@ const Slider = (props) => {
               <img
                 src={image.src}
                 alt={image.alt}
-                className="w-full h-40 object-cover rounded-2xl"
+                className="w-full h-96 object-cover"
               />
             </div>
           </div>
         ))}
       </div>
-      <div className="h-1 inset-x-0 flex justify-center">
+      <div className="absolute inset-x-0 bottom-0 flex justify-center pb-20">
         {props.images.map((_, index) => (
           <button
             key={index}
-            className={`h-3 w-3 mx-2 rounded-full ${
-              currentIndex === index ? 'bg-black' : 'bg-gray-400'
+            className={`h-2 w-2 mx-2 rounded-full ${
+              currentIndex === index ? 'bg-[#FACD5D]' : 'bg-white'
             }`}
             onClick={() => handleDotClick(index)}
           ></button>
@@ -67,4 +68,4 @@ const Slider = (props) => {
   );
 };
 
-export default Slider;
+export default RestaurantSlider;
