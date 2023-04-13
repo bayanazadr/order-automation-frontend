@@ -1,7 +1,7 @@
 import burger from '../images/burger.png'
 const SearchItem = () => {
     return ( 
-        <div className="w-full h-24 flex items-center space-x-5">
+        <div className="w-full pt-16 h-24 flex items-center space-x-5">
             <div>
                 <img className='w-full' src={burger} />
             </div>

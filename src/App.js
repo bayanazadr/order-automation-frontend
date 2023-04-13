@@ -8,6 +8,7 @@ import Payments from './views/Payments';
 import NewCreditCard from './views/NewCreditCard';
 import Restaurant from './views/Restaurant';
 import SearchPage from './views/SearchPage';
+import CategoryPage from './views/CategoryPage';
 function App() {
   return (
     <div className="App">
@@ -21,6 +22,7 @@ function App() {
           <Route path="/card" element={<NewCreditCard/>} />
           <Route path="/restaurant" element={<Restaurant/>} />
           <Route path="/searchpage" element={<SearchPage/>} />
+          <Route path="/categorypage" element={<CategoryPage/>} />
       </Routes>
     </BrowserRouter>
     </div>
