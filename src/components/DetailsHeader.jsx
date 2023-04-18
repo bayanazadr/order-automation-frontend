@@ -1,16 +1,10 @@
-import basket from '../images/basket.png'
-import arrow from '../images/arrow.png'
-import { useNavigate } from 'react-router-dom';
+import backButton from '../images/backButton.png'
+import favoritesButton from '../images/favoritesButton.png'
 const DetailsHeader = () => {
-    const navigate = useNavigate()
-    const navigateToHome = () => navigate('/')
-    const navigateToBasket = () => navigate('/basket')
     return ( 
-        <div className='h-16 w-full flex items-center space-x-32 px-4'>
-            <img src={arrow} onClick={navigateToHome}/>
-            <h1 className=''>Details</h1>
-            <img src={basket} onClick={navigateToBasket} className='w-8 h-8'/>
-        </div> 
+        <div className="w-full flex items-center justify-between absolute z-20 px-6 h-28">
+            <img src={backButton} className='h-12 w-12' />
+        </div>
      );
 }
  

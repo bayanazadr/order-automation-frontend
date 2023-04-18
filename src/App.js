@@ -7,8 +7,9 @@ import Slider from './components/Slider';
 import Payments from './views/Payments';
 import NewCreditCard from './views/NewCreditCard';
 import Restaurant from './views/Restaurant';
-import SearchPage from './views/SearchPage';
+import SearchResultPage from './views/SearchResultPage';
 import CategoryPage from './views/CategoryPage';
+import SearchPage from './views/SearchPage';
 function App() {
   return (
     <div className="App">
@@ -16,13 +17,14 @@ function App() {
       <Routes>
           <Route path="/" element={<Menu />}/>
           <Route path="/basket" element={<Basket/>} />
-          <Route path="/food-details/:dishId" element={<Details/>} />
+          <Route path="/food-details" element={<Details/>} />
           <Route path="/slider" element={<Slider/>} />
           <Route path="/payment" element={<Payments/>} />
           <Route path="/card" element={<NewCreditCard/>} />
           <Route path="/restaurant" element={<Restaurant/>} />
-          <Route path="/searchpage" element={<SearchPage/>} />
+          <Route path="/searchresultpage" element={<SearchResultPage/>} />
           <Route path="/categorypage" element={<CategoryPage/>} />
+          <Route path='/searchpage' element={<SearchPage/>}/>
       </Routes>
     </BrowserRouter>
     </div>

@@ -30,7 +30,7 @@ const Restaurant = () => {
             <RestaurantSlider images={images}/>
             <div className='w-full absolute top-80 rounded-t-3xl h-1/2 bg-[#FACD5D]'>
                 <div className='py-8 w-full px-6 flex flex-col items-start justify-start space-y-5'>
-                <p className='text-2xl text-[##262628] font-semibold'>Bravo Burger</p>
+                <p className='text-2xl text-[#262628] font-semibold'>Bravo Burger</p>
                 <div className='flex w-full space-x-4'>
                     <div className='text-xs font-medium py-2 text-white bg-black px-3 rounded'>$$</div>
                     <div className='text-xs font-medium py-2 text-white bg-black bg-opacity-30 px-3 rounded'>Burger</div>
