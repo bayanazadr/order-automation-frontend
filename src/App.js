@@ -18,7 +18,6 @@ function App() {
           <Route path="/" element={<Menu />}/>
           <Route path="/basket" element={<Basket/>} />
           <Route path="/food-details" element={<Details/>} />
-          <Route path="/slider" element={<Slider/>} />
           <Route path="/payment" element={<Payments/>} />
           <Route path="/card" element={<NewCreditCard/>} />
           <Route path="/restaurant" element={<Restaurant/>} />

@@ -2,11 +2,13 @@ import wallet from '../images/wallet.png'
 
 const PaymentFooter = () => {
     return (  
-        <div className='flex flex-row w-full space-x-2'>
-            <img className='w-[68px] h-[58px] rounded-2xl' src={wallet}></img>
-            <div className="bg-[#393939] w-[218px] h-[58px] flex justify-around items-center rounded-2xl">
-                <button className="text-[#FFFFFF]">Pay Now</button>
-                <h1 className='text-[#FFFFFF]'>$3.00</h1>
+        <div className='flex w-full justify-center items-center space-x-2 px-6 pt-5'>
+           <div className='bg-white w-20 h-14 flex items-center justify-center rounded-xl'>
+                <img src={wallet} />
+            </div>
+            <div className='bg-[#2D2D2D] w-56 h-14 flex items-center justify-center rounded-xl space-x-10 px-5'>
+                <p className='text-base text-white font-semibold'>Pay now</p>
+                <p className='text-base text-white'>$25,60</p>
             </div>
 
         </div>
