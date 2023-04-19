@@ -1,17 +1,17 @@
-import basket1 from '../images/basket1.png'
+import trash from '../images/trash.png'
 const BasketItem = () => {
     return ( 
-        <div className='w-11/12 h-20 flex rounded-2xl bg-[#F7F8FB]'>
-            <div className='mx-3'>
-            <img src={basket1} />   
+        <div className='w-full h-20 flex justify-between items-center'>
+            <div className='flex flex-col items-start'>
+                <p className='text-base font-bold'>Crispy Burger</p>
+                <p className='text-base'>$7,90</p>   
             </div>
-            <div className='text-left w-[55%] flex flex-col space-y-1'>
-                <p className='font-medium text-[#001833] text-base'>Americano</p>
-                <p className='text-sm text-[#757575]'>single | iced | medium | full ice</p>
-                <p className='font-medium text-[#001833] text-base'>x1</p>
-            </div>
-            <div className='w-[15%] flex items-center justify-center'>
-                <p className='font-medium text-[#001833] text-xl'>3$</p>
+            <div className='bg-[#979797]/10 w-32 h-12 flex items-center justify-center rounded-lg'>
+                <button className='w-12 h-12 flex items-center justify-center'>
+                    <img src={trash} />
+                </button>
+                <p className='flex items-center justify-center w-10 h-12 text-base font-semibold'>1</p>
+                <button className='w-12 h-12 text-2xl font-semibold text-[#FB6D3A]'>+</button>
             </div>
             
         </div>

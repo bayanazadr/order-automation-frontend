@@ -1,11 +1,11 @@
-import arrow from '../images/arrow.png'
+import back from '../images/back.png'
 import { useNavigate } from 'react-router-dom';
 const Basket = () => {
     const navigate = useNavigate();
     const navigateToHome = () => navigate('/')
     return ( 
-        <div className='w-full h-16 flex items-center' >
-            <img className='h-[18px] w-[24px] ml-4' onClick={navigateToHome} src={arrow}/>
+        <div className='w-full h-20 flex items-center' >
+            <img className='h-9 w-9' onClick={navigateToHome} src={back}/>
         </div>
      );
 }

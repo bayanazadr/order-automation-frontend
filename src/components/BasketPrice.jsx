@@ -1,12 +1,13 @@
+import add_price from '../images/add_price.png'
 const BasketPrice = () => {
     return ( 
-        <div className="w-full h-16 items-center flex">
-        <div className="w-1/2 flex flex-col item-center justify-between">
-            <h1 className="text-[#757575] font-medium text-xs">Total Price</h1>
-            <h1 className=" text-[#001833] font-semibold text-[22px]">$3.00</h1>
-        </div>    
-            <div>
-                <button className="bg-[#324A59] text-white font-bold  rounded-full w-40 h-14">Pay now</button>
+        <div className='w-full h-20 flex items-center space-x-3 px-6 pb-10'>
+            <div className='bg-[#979797]/10 w-20 h-14 flex items-center justify-center rounded-xl'>
+                <img src={add_price} />
+            </div>
+            <div className='bg-white w-56 h-14 flex items-center justify-center rounded-xl space-x-10 px-5'>
+                <p className='text-base text-[#2D2D2D] font-semibold'>Checkout</p>
+                <p className='text-base text-[#2D2D2D]'>$25,60</p>
             </div>
         </div>
      );
