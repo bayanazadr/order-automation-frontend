@@ -1,5 +1,5 @@
-import DetailsHeader from '../components/DetailsHeader';
 import Navbar from '../components/Navbar';
+import PagesHeader from '../components/PagesHeader';
 import cover_details from '../images/cover_details.png'
 
 const Details = () => {
@@ -27,7 +27,7 @@ const Details = () => {
     ];
     return ( 
         <div className='w-full h-[100vh] flex flex-col'>
-            <DetailsHeader/>
+          <PagesHeader/>
             <div className="h-96 bg-red-500 flex flex-col relative w-full max-w-lg mx-auto">
               <img
                 src={cover_details}

@@ -1,7 +1,6 @@
-import Restaurantheader from '../components/RestaurantHeader';
-import RestaurantSlider from '../components/RestaurantSlider';
-
-const Restaurant = () => {
+import PromotionSlider from '../components/PromotionSlider';
+import PagesHeader from '../components/PagesHeader';
+const Promotion = () => {
     const images = [
         {
             id: 1,
@@ -26,8 +25,8 @@ const Restaurant = () => {
     ];
     return ( 
         <div className='w-full h-[100vh] flex flex-col'>
-            <Restaurantheader/>
-            <RestaurantSlider images={images}/>
+            <PagesHeader/>
+            <PromotionSlider images={images}/>
             <div className='w-full absolute top-80 rounded-t-3xl h-1/2 bg-[#FACD5D]'>
                 <div className='py-8 w-full px-6 flex flex-col items-start justify-start space-y-5'>
                 <p className='text-2xl text-[#262628] font-semibold'>Bravo Burger</p>
@@ -49,4 +48,4 @@ const Restaurant = () => {
      );
 }
  
-export default Restaurant;
+export default Promotion;

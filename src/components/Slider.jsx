@@ -1,7 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useSwipeable } from 'react-swipeable';
-
+import { useNavigate } from "react-router-dom";
 const Slider = (props) => {
+  const navigate = useNavigate()
+  const navigatePromotions = () => navigate('/promotion')
   const [currentIndex, setCurrentIndex] = useState(0);
   const sliderRef = useRef(null);
 
@@ -9,11 +11,11 @@ const Slider = (props) => {
     setCurrentIndex(index);
   };
   const handleSwipedLeft = () => {
-    setCurrentIndex((currentIndex + 1) % props.images.length);
+    setCurrentIndex((currentIndex + 1) % props.promotions.length);
   };
 
   const handleSwipedRight = () => {
-    setCurrentIndex((currentIndex + props.images.length - 1) % props.images.length);
+    setCurrentIndex((currentIndex + props.promotions.length - 1) % props.promotions.length);
   };
 
   const swipeHandlers = useSwipeable({
@@ -23,8 +25,8 @@ const Slider = (props) => {
 
   useEffect(() => {
     const autoplayInterval = setInterval(() => {
-      setCurrentIndex((currentIndex + 1) % props.images.length);
-    }, 5000);
+      setCurrentIndex((currentIndex + 1) % props.promotions.length);
+    }, 1000);
 
     return () => {
       clearInterval(autoplayInterval);
@@ -39,12 +41,12 @@ const Slider = (props) => {
         style={{ transform: `translateX(-${currentIndex * 100}%)` }}
         {...swipeHandlers}
       >
-        {props.images.map((image) => (
-          <div key={image.id} className="w-full flex-none">
+        {props.promotions.map((image) => (
+          <div onClick={navigatePromotions} key={image.title} className="w-full flex-none">
             <div className="relative flex items-center justify-center">
               <img
-                src={image.src}
-                alt={image.alt}
+                src={image.image}
+                alt={image.title}
                 className="w-full h-40 object-cover rounded-2xl"
               />
             </div>
@@ -52,7 +54,7 @@ const Slider = (props) => {
         ))}
       </div>
       <div className="h-1 inset-x-0 flex justify-center">
-        {props.images.map((_, index) => (
+        {props.promotions.map((_, index) => (
           <button
             key={index}
             className={`h-3 w-3 mx-2 rounded-full ${

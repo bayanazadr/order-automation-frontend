@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useSwipeable } from 'react-swipeable';
 
-const RestaurantSlider = (props) => {
+const PromotionSlider = (props) => {
    
   const [currentIndex, setCurrentIndex] = useState(0);
   const sliderRef = useRef(null);
@@ -68,4 +68,4 @@ const RestaurantSlider = (props) => {
   );
 };
 
-export default RestaurantSlider;
+export default PromotionSlider;

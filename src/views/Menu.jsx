@@ -53,14 +53,20 @@ const images = [
       },
 ];
 
-    const [dishes, setDishes] = useState([])
+    const [promotions, setPromotions] = useState([])
     const [searchField, setSearchField] = useState("");
     const [loading, setLoading] = useState(false);
 
-    const fetchDishes = async() => {
-        await axios.get("https://order-automation-debug-server.onrender.com/api/dishes")
+    const fetchPromotions = async() => {
+        await axios.get("https://order-automation-debug-server.onrender.com/api/get-slider-data")
         .then((res) => {
-            setDishes(res.data)
+          Object.values(res.data.data).map(el => {
+            if(el.size == 'wide'){
+              console.log(el.size)
+              setPromotions(el.list)
+            }
+          })
+            // setPromotions(res.data.data)
         })
         .catch((err) => {
             console.log(err)
@@ -71,23 +77,24 @@ const images = [
     }
     useEffect(() => {
         setLoading(true);
-        fetchDishes()
+        fetchPromotions()
+        console.log(promotions)
     }, [])
 
     const handleChange = e => {
         setSearchField(e.target.value);
     }
 
-    const filteredDishes = dishes.filter(
-        dish => {
-          return (
-            dish
-            .title
-            .toLowerCase()
-            .includes(searchField.toLowerCase())
-          );
-        }
-      );
+    // const filteredDishes = promotions.filter(
+    //     dish => {
+    //       return (
+    //         dish
+    //         .title
+    //         .toLowerCase()
+    //         .includes(searchField.toLowerCase())
+    //       );
+    //     }
+    //   );
 
     // if (loading) {
     //     return <p>Data is loading...</p>;
@@ -100,10 +107,9 @@ const images = [
             <Search handleChange={handleChange}/>
             <div className="bg-[#F7F7F7] w-full rounded-t-3xl px-6">
                 <p className='text-left text-2xl font-bold text-[#2D2D2D] py-5'>Акции</p>
-                <Slider images={images} />
+                <Slider promotions={promotions} />
                 <div className="flex items-center justify-between ">
                     <h1 className="text-left text-2xl font-bold text-[#2D2D2D] pb-5">Ланч</h1>
-                    <p className="text-base text-[#503E9D] font-semibold">View all</p>
                 </div>
                 <div className="relative flex items-center">
                     <div className="w-full h-56 overflow-x-scroll scroll whitespace-nowrap scroll-smooth scrollbar-hide">
