@@ -8,7 +8,6 @@ const Slider = (props) => {
   const handleDotClick = (index) => {
     setCurrentIndex(index);
   };
-
   const handleSwipedLeft = () => {
     setCurrentIndex((currentIndex + 1) % props.images.length);
   };
