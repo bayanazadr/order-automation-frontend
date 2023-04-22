@@ -96,9 +96,9 @@ const images = [
     //     }
     //   );
 
-    // if (loading) {
-    //     return <p>Data is loading...</p>;
-    //   } else
+    if (loading) {
+        return <p>Data is loading...</p>;
+      } else
     return ( 
         <div className="w-full bg-[#FACD5D] h-[100vh]">
             <div className="w-full h-16 text-left pt-10 pl-5">

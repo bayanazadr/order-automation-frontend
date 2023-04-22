@@ -26,7 +26,7 @@ const Slider = (props) => {
   useEffect(() => {
     const autoplayInterval = setInterval(() => {
       setCurrentIndex((currentIndex + 1) % props.promotions.length);
-    }, 1000);
+    }, 5000);
 
     return () => {
       clearInterval(autoplayInterval);
@@ -43,12 +43,13 @@ const Slider = (props) => {
       >
         {props.promotions.map((image) => (
           <div onClick={navigatePromotions} key={image.title} className="w-full flex-none">
-            <div className="relative flex items-center justify-center">
+            <div className="relative flex flex-col items-start justify-end">
               <img
                 src={image.image}
                 alt={image.title}
                 className="w-full h-40 object-cover rounded-2xl"
               />
+              <p className='absolute text-white text-lg font-semibold m-3 '>{image.title}</p>
             </div>
           </div>
         ))}
