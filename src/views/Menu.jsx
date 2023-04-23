@@ -52,7 +52,7 @@ const images = [
         alt: "Image 4",
       },
 ];
-
+    const[offer, setOffer] = useState([]);
     const [promotions, setPromotions] = useState([])
     const [searchField, setSearchField] = useState("");
     const [loading, setLoading] = useState(false);
@@ -61,9 +61,13 @@ const images = [
         await axios.get("https://order-automation-debug-server.onrender.com/api/get-slider-data")
         .then((res) => {
           Object.values(res.data.data).map(el => {
-            if(el.size == 'wide'){
-              console.log(el.size)
+            if(el.size === 'wide'){
+              console.log('5r5CIgxn :: wide element.list: ', el.list);
               setPromotions(el.list)
+            }
+            if(el.size === 'small') {
+                console.log('1t62z :: small element.list: ', el.list);
+                setOffer(el.list);
             }
           })
             // setPromotions(res.data.data)
@@ -77,8 +81,8 @@ const images = [
     }
     useEffect(() => {
         setLoading(true);
-        fetchPromotions()
-        console.log(promotions)
+        fetchPromotions();
+
     }, [])
 
     const handleChange = e => {
@@ -113,8 +117,8 @@ const images = [
                 </div>
                 <div className="relative flex items-center">
                     <div className="w-full h-56 overflow-x-scroll scroll whitespace-nowrap scroll-smooth scrollbar-hide">
-                        {categories.map((category) => (
-                        <CategoryCard img={category.img} key={category.name} name={category.name} />
+                        {offer.map((category) => (
+                        <CategoryCard img={category.image} key={category.title} name={category.title} />
                         ))}
                         </div>
                         </div>
