@@ -1,4 +1,5 @@
-import basket from '../images/basket.png'
+import cart from '../images/cart.png'
+import spoon from '../images/spoon.png'
 import home from '../images/home.png'
 import list from '../images/list.png'
 import { useNavigate } from 'react-router-dom'
@@ -9,9 +10,10 @@ const Navbar = () => {
     return ( 
         <div className="fixed z-50 rounded-t-2xl top-[85vh] w-full h-32 bg-white">
             <div className="w-full h-full flex justify-evenly items-center">
-                <img className='w-10 h-10 mt-1' onClick={navigateToHome} src={home}/>
-                <img className='w-9 h-9 mb-1' onClick={navigateToBasket} src={basket}/>
-                <img className='w-7 h-7' src={list}/>
+                <img className='w-5 h-5' onClick={navigateToHome} src={home}/>
+                <img className='w-5 h-5' onClick={navigateToHome} src={spoon}/>
+                <img className='w-5 h-5' onClick={navigateToBasket} src={cart}/>
+                <img className='w-5 h-5' src={list}/>
             </div>
         </div>
      );

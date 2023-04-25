@@ -54,6 +54,7 @@ const images = [
 ];
 
     const [promotions, setPromotions] = useState([])
+    const [smallSlider, setSmallSlider] = useState([])
     const [searchField, setSearchField] = useState("");
     const [loading, setLoading] = useState(false);
 
@@ -64,6 +65,9 @@ const images = [
             if(el.size == 'wide'){
               console.log(el.size)
               setPromotions(el.list)
+            }
+            if(el.size =="small"){
+              setSmallSlider(el.list)
             }
           })
             // setPromotions(res.data.data)
@@ -105,19 +109,21 @@ const images = [
                 <p className="text-white text-xs font-bold">ЗАКАЗ НА СТОЛ #27</p>
             </div>
             <Search handleChange={handleChange}/>
-            <div className="bg-[#F7F7F7] w-full rounded-t-3xl px-6">
+            <div className="bg-[#F7F7F7] w-full rounded-t-3xl">
+              <div className="w-full px-6">
                 <p className='text-left text-2xl font-bold text-[#2D2D2D] py-5'>Акции</p>
                 <Slider promotions={promotions} />
                 <div className="flex items-center justify-between ">
                     <h1 className="text-left text-2xl font-bold text-[#2D2D2D] pb-5">Ланч</h1>
                 </div>
-                <div className="relative flex items-center">
-                    <div className="w-full h-56 overflow-x-scroll scroll whitespace-nowrap scroll-smooth scrollbar-hide">
-                        {categories.map((category) => (
-                        <CategoryCard img={category.img} key={category.name} name={category.name} />
-                        ))}
-                        </div>
-                        </div>
+              </div>
+              <div className="relative flex items-center px-3">
+                <div className="w-full h-56 overflow-x-scroll scroll whitespace-nowrap scroll-smooth scrollbar-hide">
+                  {promotions.map((category) => (
+                  <CategoryCard img={category.image} key={category.uuid} name={category.title} />
+                  ))}
+                </div>
+              </div>
             {/* <div className="w-full flex flex-wrap justify-center">
                 {filteredDishes.map((food) => (
                     <Link to={`/food-details/${food.uuid}`}
