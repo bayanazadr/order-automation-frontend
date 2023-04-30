@@ -1,13 +1,10 @@
-import FoodCard from "../components/FoodCard";
 import Navbar from "../components/Navbar";
 import CategoryCard from "../components/CategoryCard";
-import PromotionCard from "../components/PromotionCard";
 import Search from "../components/Search";
 import category from '../images/category.png'
 import promotion from '../images/promotion.png'
-import { useEffect, useState } from "react";
+import {useEffect, useState} from "react";
 import axios from 'axios';
-import { Link } from "react-router-dom";
 import Slider from "../components/Slider";
 
 const Menu = () => {
@@ -119,8 +116,8 @@ const images = [
               </div>
               <div className="relative flex items-center px-3">
                 <div className="w-full h-56 overflow-x-scroll scroll whitespace-nowrap scroll-smooth scrollbar-hide">
-                  {promotions.map((category) => (
-                  <CategoryCard img={category.image} key={category.uuid} name={category.title} />
+                  {smallSlider.map((category) => (
+                  <CategoryCard img={ JSON.parse(category.image)[0]} key={category.uuid} name={category.title} />
                   ))}
                 </div>
               </div>

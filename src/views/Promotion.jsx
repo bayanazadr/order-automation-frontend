@@ -1,5 +1,7 @@
 import PromotionSlider from '../components/PromotionSlider';
 import PagesHeader from '../components/PagesHeader';
+import axios from "axios";
+
 const Promotion = () => {
     const images = [
         {
@@ -23,6 +25,29 @@ const Promotion = () => {
             alt: "Image 4",
           },
     ];
+
+    const fetchEvent = async(uuid) => {
+        const link = `http://localhost:1313/api/get-event-by-id/${uuid}`;
+        console.log('KnsZSNJ :: uuid: ', uuid)
+        console.log('cRdekE3 :: link: ', link)
+
+        // await axios.post('https://order-automation-debug-server.onrender.com/api/get-event-by-id/' + uuid)
+        await axios.get(link)
+            .then(res => {
+                Object.values(res).map(x => {
+                    console.log('VjFPxCoG :: event by id: ' +  JSON.parse(x.image)[0] );
+                });
+            });
+    }
+
+    const urlSearchParams = new URLSearchParams(window.location.search);
+    const params = Object.fromEntries(urlSearchParams.entries());
+
+    console.log('Yi8xA8h :: params[\'uuid\']: ', params['uuid']);
+    fetchEvent(params['uuid']);
+
+
+
     return ( 
         <div className='w-full h-[100vh] flex flex-col'>
             <PagesHeader/>

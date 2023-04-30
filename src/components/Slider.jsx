@@ -1,9 +1,10 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { useSwipeable } from 'react-swipeable';
-import { useNavigate } from "react-router-dom";
+import React, {useEffect, useRef, useState} from 'react';
+import {useSwipeable} from 'react-swipeable';
+import {useNavigate} from "react-router-dom";
+
 const Slider = (props) => {
   const navigate = useNavigate()
-  const navigatePromotions = () => navigate('/promotion')
+  const navigatePromotions = (uuid) => navigate(`/promotion/?uuid=${uuid}`)
   const [currentIndex, setCurrentIndex] = useState(0);
   const sliderRef = useRef(null);
 
@@ -45,7 +46,7 @@ const Slider = (props) => {
           <div onClick={navigatePromotions} key={image.title} className="w-full flex-none">
             <div className="relative flex flex-col items-start justify-end">
               <img
-                src={image.image}
+                src={ JSON.parse(image.image)[0] }
                 alt={image.title}
                 className="w-full h-40 object-cover rounded-2xl"
               />
