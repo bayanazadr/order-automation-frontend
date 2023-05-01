@@ -1,10 +1,19 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {useSwipeable} from 'react-swipeable';
-import {useNavigate} from "react-router-dom";
+import {createSearchParams, useNavigate} from "react-router-dom";
 
 const Slider = (props) => {
   const navigate = useNavigate()
-  const navigatePromotions = (uuid) => navigate(`/promotion/?uuid=${uuid}`)
+  const navigatePromotions = (uuid) => 
+  {
+    const params = [
+      ['id', uuid]
+    ]
+    navigate({
+      pathname: '/promotion',
+      search: `?${createSearchParams(params)}`
+    })
+}
   const [currentIndex, setCurrentIndex] = useState(0);
   const sliderRef = useRef(null);
 
@@ -27,7 +36,7 @@ const Slider = (props) => {
   useEffect(() => {
     const autoplayInterval = setInterval(() => {
       setCurrentIndex((currentIndex + 1) % props.promotions.length);
-    }, 5000);
+    }, 2000);
 
     return () => {
       clearInterval(autoplayInterval);
@@ -42,15 +51,15 @@ const Slider = (props) => {
         style={{ transform: `translateX(-${currentIndex * 100}%)` }}
         {...swipeHandlers}
       >
-        {props.promotions.map((image) => (
-          <div onClick={navigatePromotions} key={image.title} className="w-full flex-none">
+        {props.promotions.map((promotion) => (
+          <div onClick={() => navigatePromotions(promotion.uuid)} key={promotion.title} className="w-full flex-none">
             <div className="relative flex flex-col items-start justify-end">
               <img
-                src={ JSON.parse(image.image)[0] }
-                alt={image.title}
+                src={JSON.parse(promotion.image)[0]}
+                alt={promotion.title}
                 className="w-full h-40 object-cover rounded-2xl"
               />
-              <p className='absolute text-white text-lg font-semibold m-3 '>{image.title}</p>
+              <p className='absolute text-white text-lg font-semibold m-3 '>{promotion.title}</p>
             </div>
           </div>
         ))}
