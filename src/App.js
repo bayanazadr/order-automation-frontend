@@ -9,6 +9,7 @@ import Promotion from './views/Promotion';
 import SearchResultPage from './views/SearchResultPage';
 import CategoryPage from './views/CategoryPage';
 import SearchPage from './views/SearchPage';
+import StatusPage from './views/StatusPage';
 function App() {
   return (
     <div className="App">
@@ -23,6 +24,7 @@ function App() {
           <Route path="/searchresultpage" element={<SearchResultPage/>} />
           <Route path="/categorypage" element={<CategoryPage/>} />
           <Route path='/searchpage' element={<SearchPage/>}/>
+          <Route path='/status' element={<StatusPage/>}/>
       </Routes>
     </BrowserRouter>
     </div>
