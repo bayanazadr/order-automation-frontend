@@ -17,7 +17,7 @@ const SearchPage = () => {
     }
     useEffect(() => {
         getCategories()
-    })
+    }, [])
     return ( 
         <div className="w-full bg-[#FB6D3A] h-36" >
             <SearchBar/>

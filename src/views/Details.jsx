@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import Navbar from '../components/Navbar';
 import PagesHeader from '../components/PagesHeader';
-import cover_details from '../images/cover_details.png'
 import axios from "axios";
 import {useLocation, createSearchParams, useNavigate} from "react-router-dom";
 const Details = () => {
@@ -26,7 +25,7 @@ const Details = () => {
   }
     useEffect(() => {
       fetchDetails(id)
-    })
+    }, [])
     
     return ( 
         <div className='w-full h-[100vh] flex flex-col'>
