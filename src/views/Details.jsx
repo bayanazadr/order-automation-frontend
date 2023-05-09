@@ -1,33 +1,35 @@
-import { useEffect, useState } from 'react';
-import Navbar from '../components/Navbar';
+import {useEffect, useState} from 'react';
 import PagesHeader from '../components/PagesHeader';
-import axios from "axios";
-import {useLocation, createSearchParams, useNavigate} from "react-router-dom";
+import {useLocation} from "react-router-dom";
+import {getDishById} from "../controllers/Controllers";
+
 const Details = () => {
   const search = useLocation().search;
   const id = new URLSearchParams(search).get('id');
   const [details, setDetails] = useState([])
   const fetchDetails = async(uuid) => {
-    const link = `https://order-automation-debug-server.onrender.com/api/get-dish/${uuid}`;
-    await axios.post(link)
+    await getDishById(uuid)
         .then(res => {
             setDetails(res.data)
         });
       }
 
   const getSrc = (data) => {
-    if(data.pictures == undefined){
+    if(data.pictures === undefined){
       return ""
+    } else {
+        try {
+            return JSON.parse(data.pictures)[0]
+        } catch (e) {
+            console.error('1WN99a7i :: Incorrect image link ', e)
+        }
     }
-    else{
-      return JSON.parse(data.pictures)[0]
-      }
   }
     useEffect(() => {
-      fetchDetails(id)
+      fetchDetails(id).then()
     }, [])
-    
-    return ( 
+
+    return (
         <div className='w-full h-[100vh] flex flex-col'>
           <PagesHeader/>
             <div className="h-96 flex flex-col relative w-full max-w-lg mx-auto">
@@ -79,9 +81,9 @@ const Details = () => {
                 </div>
                 </div>
             </div>
-            
+
         </div>
      );
 }
- 
+
 export default Details;

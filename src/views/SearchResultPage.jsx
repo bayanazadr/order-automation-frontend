@@ -4,6 +4,7 @@ import SearchPageHeader from "../components/SearchPageHeader";
 import {useEffect, useState} from "react";
 import axios from 'axios';
 import {useLocation, createSearchParams, useNavigate} from "react-router-dom";
+import {getDishesByFilter} from "../controllers/Controllers";
 
 const SearchResultPage = () => {
   const navigate = useNavigate()
@@ -17,24 +18,17 @@ const SearchResultPage = () => {
       search: `?${createSearchParams(params)}`
     })
 }
-    const [searchValue, setsearchValue] = useState([])
-    const fetchDetails = async(value) => {
-      const link = `https://order-automation-debug-server.onrender.com/api/get-dish-by-filter`;
-      await axios.post(link,
-        {
-            "limit": 10,
-            "offset": 0,
-            "searchText": value,
-            "direction": "asc"
-        })
+    const [searchValue, setSearchValue] = useState([])
+    const fetchDetails = async(searchText) => {
+      await getDishesByFilter(searchText)
           .then(res => {
             console.log(res.data[1])
-            setsearchValue(res.data[1])
+            setSearchValue(res.data[1])
           });
         }
     
   const handleSearch = (value) => {
-    fetchDetails(value)
+    fetchDetails(value).then()
   }
 
     return ( 
