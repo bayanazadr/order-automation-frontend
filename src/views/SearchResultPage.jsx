@@ -1,9 +1,8 @@
 import Navbar from "../components/Navbar";
 import SearchItem from "../components/SearchItem";
 import SearchPageHeader from "../components/SearchPageHeader";
-import {useEffect, useState} from "react";
-import axios from 'axios';
-import {useLocation, createSearchParams, useNavigate} from "react-router-dom";
+import {useState} from "react";
+import {createSearchParams, useNavigate} from "react-router-dom";
 import {getDishesByFilter} from "../controllers/Controllers";
 
 const SearchResultPage = () => {

@@ -2,7 +2,6 @@ import Navbar from "../components/Navbar";
 import CategoryCard from "../components/CategoryCard";
 import Search from "../components/Search";
 import {useEffect, useState} from "react";
-import axios from 'axios';
 import Slider from "../components/Slider";
 import {getMainPageHeader, getSliderData} from "../controllers/Controllers";
 
