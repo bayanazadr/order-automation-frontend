@@ -22,7 +22,7 @@ function App() {
           <Route path="/card" element={<NewCreditCard/>} />
           <Route path="/promotion" element={<Promotion/>} />
           <Route path="/search" element={<SearchResultPage/>} />
-          <Route path="/categorypage" element={<CategoryPage/>} />
+          <Route path="/category" element={<CategoryPage/>} />
           <Route path='/searchpage' element={<SearchPage/>}/>
           <Route path='/status' element={<StatusPage/>}/>
       </Routes>

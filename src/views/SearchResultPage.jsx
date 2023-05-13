@@ -21,7 +21,6 @@ const SearchResultPage = () => {
     const fetchDetails = async(searchText) => {
       await getDishesByFilter(searchText)
           .then(res => {
-            console.log(res.data[1])
             setSearchValue(res.data[1])
           });
         }

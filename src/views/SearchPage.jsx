@@ -4,9 +4,23 @@ import base from '../images/base.png'
 import Navbar from "../components/Navbar";
 import {useEffect, useState} from "react";
 import {getCategories} from "../controllers/Controllers";
+import {createSearchParams, useNavigate} from "react-router-dom";
 
 const SearchPage = () => {
     const [categories, setCategories] = useState([])
+    const navigate = useNavigate()
+
+    const navigateToCategory = (id) => {
+        const params = [
+            ['id', id]
+          ]
+          navigate({
+            pathname: '/category',
+            search: `?${createSearchParams(params)}`
+          })
+    }
+    
+
     const getCategoriesFromRemote = async () => {
         getCategories()
             .then((res) => {
@@ -16,6 +30,7 @@ const SearchPage = () => {
                 console.log(err)
             })
     }
+
     useEffect(() => {
         getCategoriesFromRemote().then()
     }, [])
@@ -40,8 +55,8 @@ const SearchPage = () => {
                     <p className="text-sm font-bold">Category</p>
                     <div className="w-full flex flex-wrap justify-between">
                         {categories.map((category) => (
-                            <div key={category.id}
-                                 className=" w-40 h-24 mt-4 rounded-xl relative z-0 flex items-center">
+                            <div onClick={()=> navigateToCategory(category.id)} key={category.id}
+                                 className="bg-red-500 w-40 h-24 mt-4 rounded-xl relative z-0 flex items-center">
                                 <img src={base} className="w-full h-full absolute z-0"/>
                                 <div className="absolute z-10 flex  ml-3 items-center space-x-2">
                                     <div className="w-2 h-2 rounded-full bg-[#FACD5D]"></div>
