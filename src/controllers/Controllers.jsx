@@ -34,9 +34,11 @@ export async function getCategories() {
     return await instance.get(`/categories`);
 }
 
+export async function getCategoryById(id) {
+    return await instance.get(`/get-category-by-id/${id}`)
+}
 
 export async function getEventById(uuid) {
     return await instance.get(`/get-event-by-id/${uuid}`)
 }
-
 
