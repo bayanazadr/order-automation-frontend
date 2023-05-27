@@ -42,3 +42,26 @@ export async function getEventById(uuid) {
     return await instance.get(`/get-event-by-id/${uuid}`)
 }
 
+export async function getOrderById(uuid) {
+    return await instance.get(`/get-order-by-id/${uuid}`)
+}
+
+export function addOrder(order) {
+    instance.post(`/add-order`, order).then();
+}
+
+export function deleteOrderById(orderId) {
+    instance.post(`/delete-order-by-id/${orderId}`)
+}
+
+export async function getBasketById(basketId) {
+    return await instance.get(`/get-basket-by-id/${basketId}`);
+}
+
+export function addBasket(basket) {
+    instance.post(`add-basket`, basket).then();
+}
+
+export function deleteBasketById(basketId) {
+    instance.post(`delete-basket-by-id/${basketId}`).then();
+}

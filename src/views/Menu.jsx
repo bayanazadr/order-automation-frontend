@@ -26,6 +26,8 @@ const Menu = () => {
         await getSliderData()
             .then((res) => {
                 Object.values(res.data.data).map(el => {
+                    localStorage.setItem('table_id', JSON.stringify('9fceca48-9cc0-4db0-8022-3827bc72f299')) // todo it's for example
+
                     if (el.size === 'wide') {
                         setPromotions(el.list)
                     }
