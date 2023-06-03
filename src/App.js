@@ -15,7 +15,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
       <Routes>
-          <Route path="/" element={<Menu/>}/>
+          <Route path="/:tableId?" element={<Menu/>}/>
           <Route path="/basket" element={<Basket/>} />
           <Route path="/food-details" element={<Details/>} />
           <Route path="/payment" element={<Payments/>} />

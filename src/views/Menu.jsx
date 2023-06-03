@@ -4,6 +4,7 @@ import Search from "../components/Search";
 import {useEffect, useState} from "react";
 import Slider from "../components/Slider";
 import {getMainPageHeader, getSliderData} from "../controllers/Controllers";
+import {useParams} from "react-router-dom";
 
 const Menu = () => {
     const [pageHeader, setPageHeader] = useState([])
@@ -11,6 +12,9 @@ const Menu = () => {
     const [smallSlider, setSmallSlider] = useState([])
     const [searchField, setSearchField] = useState("");
     const [loading, setLoading] = useState(false);
+
+    const { tableId } = useParams();
+
 
     const fetchHeader = async () => {
         await getMainPageHeader()
@@ -26,7 +30,9 @@ const Menu = () => {
         await getSliderData()
             .then((res) => {
                 Object.values(res.data.data).map(el => {
-                    localStorage.setItem('table_id', JSON.stringify('9fceca48-9cc0-4db0-8022-3827bc72f299')) // todo it's for example
+                    if(tableId) {
+                        localStorage.setItem('tableId', JSON.stringify(tableId))
+                    }
 
                     if (el.size === 'wide') {
                         setPromotions(el.list)
@@ -47,7 +53,7 @@ const Menu = () => {
         setLoading(true);
         fetchPromotions().then()
         fetchHeader().then()
-    }, [])
+    }, [tableId])
 
     const handleChange = e => {
         setSearchField(e.target.value);
