@@ -17,7 +17,7 @@ const Menu = () => {
 
 
     const fetchHeader = async () => {
-        await getMainPageHeader()
+        await getMainPageHeader(tableId)
             .then((res) => {
                     if (res !== undefined) {
                         setPageHeader(res.data)
@@ -27,11 +27,11 @@ const Menu = () => {
     }
 
     const fetchPromotions = async () => {
-        await getSliderData()
+        await getSliderData(tableId)
             .then((res) => {
                 Object.values(res.data.data).map(el => {
                     if(tableId) {
-                        localStorage.setItem('tableId', JSON.stringify(tableId))
+                        localStorage.setItem('table_id', JSON.stringify(tableId))
                     }
 
                     if (el.size === 'wide') {

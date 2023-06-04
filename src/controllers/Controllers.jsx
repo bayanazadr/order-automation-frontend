@@ -1,11 +1,11 @@
 import instance from "./instance";
 
-export async function getMainPageHeader() {
-    return await instance.get(`/get-header-data`)
+export async function getMainPageHeader(tableId) {
+    return await instance.get(`/get-header-data/${tableId}`)
 }
 
-export async function getSliderData() {
-    return await instance.get(`/get-slider-data`)
+export async function getSliderData(tableId) {
+    return await instance.get(`/get-slider-data/${tableId}`)
 }
 
 export async function getDishById(uuid) {
