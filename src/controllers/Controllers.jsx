@@ -1,11 +1,15 @@
 import instance from "./instance";
 
 export async function getMainPageHeader(tableId) {
-    return await instance.get(`/get-header-data/${tableId}`)
+    return await instance.get(`/get-header-data`, {params: {
+            temporaryKey: tableId
+        }})
 }
 
 export async function getSliderData(tableId) {
-    return await instance.get(`/get-slider-data/${tableId}`)
+    return await instance.get(`/get-slider-data`, {params: {
+            temporaryKey: tableId
+        }} )
 }
 
 export async function getDishById(uuid) {
@@ -17,7 +21,7 @@ export async function getDishesByCategory(categoryId) {
 }
 
 export async function getDishesByEvent(eventUuid) {
-    return await instance.post(`/get-dish-by-event/${eventUuid}`)
+    return await instance.post(`/get-dish-by-event/${eventUuid}` )
 }
 
 export async function getDishesByFilter(searchText, limit = 10, offset = 0, direction = 'asc') {
