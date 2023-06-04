@@ -3,11 +3,19 @@ import spoon from '../images/spoon.png'
 import home from '../images/home.png'
 import list from '../images/list.png'
 import { useNavigate } from 'react-router-dom'
+import {useEffect, useState} from "react";
 const Navbar = () => {
     const navigate = useNavigate();
-    const navigateToHome = () => navigate('/')
+    const navigateToHome = () => navigate(`/${tableId}`)
     const navigateToBasket = () => navigate('/basket')
     const navigateToSearchPage = () => navigate('/searchpage')
+    const [tableId, setTableId]  = useState('');
+
+    useEffect(() => {
+        const id = JSON.parse(localStorage.getItem('table_id'));
+        setTableId(id);
+    }, [tableId])
+
     return ( 
         <div className="fixed z-50 rounded-t-2xl top-[85vh] w-full h-32 bg-white">
             <div className="w-full h-full flex justify-evenly items-center">
