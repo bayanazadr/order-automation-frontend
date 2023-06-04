@@ -1,8 +1,10 @@
 import add_price from '../images/add_price.png'
+import { useNavigate } from 'react-router-dom';
 import {useEffect, useState} from "react";
 const BasketPrice = (data) => {
+    const navigate = useNavigate();
     const [price, setPrice] = useState(0)
-
+    const navigateToPayment = () => navigate("/payment")
     useEffect(() => {
         setPrice(data.data)
     }, [data])
@@ -12,8 +14,8 @@ const BasketPrice = (data) => {
             <div className='bg-[#979797]/10 w-20 h-14 flex items-center justify-center rounded-xl'>
                 <img src={add_price} />
             </div>
-            <div className='bg-white w-56 h-14 flex items-center justify-center rounded-xl space-x-10 px-5'>
-                <p className='text-base text-[#2D2D2D] font-semibold'>Checkout</p>
+            <div onClick={navigateToPayment} className='bg-white w-56 h-14 flex items-center justify-center rounded-xl space-x-10 px-5'>
+                <p className='text-base text-[#2D2D2D] font-semibold'>Continue</p>
                 <p className='text-base text-[#2D2D2D]'>{price} tg</p>
             </div>
         </div>
