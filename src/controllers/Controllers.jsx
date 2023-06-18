@@ -20,22 +20,26 @@ export async function getDishesByCategory(categoryId) {
     return await instance.get(`/get-dish-by-category/${categoryId}`)
 }
 
+export async function getBranchIdByTempKey(tempKey) {
+    return await instance.post(`/get-branch-id`, {}, {params: {temporaryKey: tempKey}});
+}
+
 export async function getDishesByEvent(eventUuid) {
     return await instance.post(`/get-dish-by-event/${eventUuid}` )
 }
 
-export async function getDishesByFilter(searchText, limit = 10, offset = 0, direction = 'asc') {
+export async function getDishesByFilter(branchUuid, searchText, limit = 20, offset = 0, direction = 'asc') {
     return await instance.post(`/get-dish-by-filter`,
         {
             "limit": limit,
             "offset": offset,
             "searchText": searchText,
             "direction": direction
-        })
+        }, {params: {branchUuid: branchUuid}})
 }
 
-export async function getCategories() {
-    return await instance.get(`/categories`);
+export async function getCategories(branchUuid) {
+    return await instance.post(`/categories`, {}, {params: {branchUuid: branchUuid}});
 }
 
 export async function getCategoryById(id) {
