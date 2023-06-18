@@ -3,7 +3,7 @@ import CategoryCard from "../components/CategoryCard";
 import Search from "../components/Search";
 import {useEffect, useState} from "react";
 import Slider from "../components/Slider";
-import {getMainPageHeader, getSliderData} from "../controllers/Controllers";
+import {getBranchIdByTempKey, getMainPageHeader, getSliderData} from "../controllers/Controllers";
 import {useParams} from "react-router-dom";
 
 const Menu = () => {
@@ -12,8 +12,7 @@ const Menu = () => {
     const [smallSlider, setSmallSlider] = useState([])
     const [searchField, setSearchField] = useState("");
     const [loading, setLoading] = useState(false);
-
-    const { tableId } = useParams();
+    const {tableId} = useParams();
 
 
     const fetchHeader = async () => {
@@ -26,11 +25,20 @@ const Menu = () => {
             )
     }
 
+    const fetchBranchId = async () => {
+        await getBranchIdByTempKey(tableId)
+            .then(res => {
+                if (res.data) {
+                    localStorage.setItem('branch_id', JSON.stringify(res.data))
+                }
+            });
+    }
+
     const fetchPromotions = async () => {
         await getSliderData(tableId)
             .then((res) => {
-                Object.values(res.data.data).map(el => {
-                    if(tableId) {
+                Object.values(res.data.stringSlideMap).map(el => {
+                    if (tableId) {
                         localStorage.setItem('table_id', JSON.stringify(tableId))
                     }
 
@@ -51,8 +59,9 @@ const Menu = () => {
     }
     useEffect(() => {
         setLoading(true);
-        fetchPromotions().then()
-        fetchHeader().then()
+        fetchPromotions().then();
+        fetchHeader().then();
+        fetchBranchId().then();
     }, [tableId])
 
     const handleChange = e => {
