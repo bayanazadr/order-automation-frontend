@@ -18,7 +18,8 @@ const SearchResultPage = () => {
     }
     const [searchValue, setSearchValue] = useState([])
     const fetchDetails = async (searchText) => {
-        await getDishesByFilter(searchText)
+        const branchId = JSON.parse(localStorage.getItem('branch_id'));
+        await getDishesByFilter(branchId, searchText)
             .then(res => {
                 setSearchValue(res.data[1])
             });

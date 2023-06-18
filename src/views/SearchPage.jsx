@@ -22,13 +22,17 @@ const SearchPage = () => {
     
 
     const getCategoriesFromRemote = async () => {
-        getCategories()
-            .then((res) => {
-                setCategories(res.data)
-            })
-            .catch((err) => {
-                console.log(err)
-            })
+        const branchId = JSON.parse(localStorage.getItem('branch_id'));
+        if(branchId) {
+            getCategories(branchId)
+                .then((res) => {
+                    setCategories(res.data)
+                })
+                .catch((err) => {
+                    console.log(err)
+                })
+        }
+
     }
 
     useEffect(() => {
