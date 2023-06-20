@@ -6,12 +6,39 @@ import QR from '../images/QR.png';
 import wallet from '../images/wallet.png'
 import { useRef } from 'react';
 import CreditCardForm from '../components/CreditCardForm';
+import {useEffect, useState} from "react";
 
 const Payments = () => {
     const creditCardFormRef = useRef();
     const handlePaymentSubmit = (event) => {
         creditCardFormRef.current.submitForm();
       };
+    const [baskets, setBaskets] = useState([])
+    const [order, setOrder] = useState([])
+    const [price, setPrice] = useState(0)
+    const tgSymbol = '₸';
+
+    const initBasket = () => {
+        const basket = JSON.parse(localStorage.getItem('basket'));
+        if (basket) {
+            setBaskets(basket)
+        }
+    }
+
+    useEffect(() => {
+        initBasket();
+    }, [])
+
+    useEffect(() => {
+        getPrice();
+    }, [baskets])
+
+
+    const getPrice = () => {
+        const order = JSON.parse(localStorage.getItem('order'));
+        setPrice(order.price)
+    }
+
     const methods=[
         {
             img: creditcard,
@@ -26,8 +53,8 @@ const Payments = () => {
             name: 'QR'
         }
     ]
-    
-    return ( 
+
+    return (
         <div className="h-screen flex flex-col bg-[#FACD5D]">
             <div className='rounded-b-3xl w-full h-[720px] space-y-6 bg-[#F7F7F7] px-6'>
                 <PaymentHeader/>
@@ -45,7 +72,7 @@ const Payments = () => {
             </div>
             <button onClick={handlePaymentSubmit} className='bg-[#2D2D2D] w-56 h-14 flex items-center justify-center rounded-xl space-x-10 px-5'>
             <p className='text-base text-white font-semibold'>Pay now</p>
-                <p className='text-base text-white'>$25,60</p>
+                <p className='text-base text-white'>{price} {tgSymbol}</p>
             </button>
 
         </div>

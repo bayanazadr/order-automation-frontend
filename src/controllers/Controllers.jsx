@@ -24,6 +24,10 @@ export async function getBranchIdByTempKey(tempKey) {
     return await instance.post(`/get-branch-id`, {}, {params: {temporaryKey: tempKey}});
 }
 
+export async function getTableUuidByTempKey(tempKey) {
+    return await instance.post(`/get-table-uuid`, {}, {params: {temporaryKey: tempKey}});
+}
+
 export async function getDishesByEvent(eventUuid) {
     return await instance.post(`/get-dish-by-event/${eventUuid}` )
 }
@@ -55,7 +59,7 @@ export async function getOrderById(uuid) {
 }
 
 export function addOrder(order) {
-    instance.post(`/add-order`, order).then();
+   return instance.post(`/add-order`, order).then();
 }
 
 export function deleteOrderById(orderId) {

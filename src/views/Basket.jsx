@@ -2,8 +2,11 @@ import BasketItem from '../components/BasketItem';
 import BasketHeader from '../components/BasketHeader'
 import BasketPrice from '../components/BasketPrice';
 import {useEffect, useState} from 'react';
+import {useNavigate} from "react-router-dom";
 
 const Basket = () => {
+  const navigate = useNavigate();
+  const navigateToSearchPage = () => navigate('/searchpage')
 
   const [baskets, setBaskets] = useState([])
   const [price, setPrice] = useState(0)
@@ -29,7 +32,6 @@ const Basket = () => {
     baskets.forEach(item => {
       sum += Number(item.price)
     })
-    console.log('ar3C1 :: sum: ', sum)
     setPrice(sum)
   }
 
@@ -68,7 +70,7 @@ const Basket = () => {
                 onReduceDishCount={reduceDishCount}
               />
             ))}
-            <div className='space-x-3 flex items-center justify-center text-[#503E9D] text-base font-semibold h-16'>
+            <div className='space-x-3 flex items-center justify-center text-[#503E9D] text-base font-semibold h-16' onClick={navigateToSearchPage}>
               <p className='text-3xl pb-2'>+</p>
               <p className='text-lg'>Add more items</p>
             </div>

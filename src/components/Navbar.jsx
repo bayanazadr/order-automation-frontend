@@ -13,7 +13,7 @@ const Navbar = () => {
     const [tableId, setTableId]  = useState('');
 
     useEffect(() => {
-        const id = JSON.parse(localStorage.getItem('table_id'));
+        const id = JSON.parse(localStorage.getItem('table_temp_key'));
         setTableId(id);
     }, [tableId])
 
