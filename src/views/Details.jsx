@@ -2,26 +2,58 @@ import {useEffect, useState} from 'react';
 import PagesHeader from '../components/PagesHeader';
 import {useLocation} from "react-router-dom";
 import {getDishById} from "../controllers/Controllers";
+import {Ingredient} from "../models/Ingredient";
+import {Dish} from "../models/Dish";
 
 const Details = () => {
     const search = useLocation().search;
     const id = new URLSearchParams(search).get('id');
-    const [details, setDetails] = useState([])
+    const [details, setDetails] = useState(new Dish())
     const [dishChose, setDishChose] = useState(false)
     const [tomatoes, setTomatoes] = useState(true)
     const [olive, setOlive] = useState(true)
     const [sause, setSause] = useState(true)
-
+    const tgSymbol = '₸';
     const [addToggle, setAddToggle] = useState('+');
+    const [selectedIngredients, setSelectedIngredients] = useState([]);
 
     const fetchDetails = async (uuid) => {
         await getDishById(uuid)
             .then(res => {
-                const ll = localStorage.getItem('table_id');
-                console.log('7bAYr :: from storage: ', JSON.parse(ll));
-                setDetails(res.data)
-                checkDishInBasket(res.data);
+                const ingredients = parseIngredients(res?.data?.ingredients);
+
+                console.log('2uzjO8 :: res.data: ', res.data);
+                console.log('1HQxr30 :: ingredients: ', ingredients);
+
+                let dish = new Dish(
+                    res.data?.uuid,
+                    res.data?.active,
+                    res.data?.amount,
+                    res.data?.categoryId,
+                    res.data?.description,
+                    ingredients,
+                    res.data?.notes,
+                    res.data?.pictures,
+                    res.data?.price,
+                    res.data?.title,
+                )
+                setDetails(dish)
+                checkDishInBasket(dish);
             });
+    }
+
+
+    function parseIngredients(json) {
+        const ingredients = [];
+        try {
+            const parsedIngredients = JSON.parse(json);
+            if (parsedIngredients && parsedIngredients.length > 0) {
+                parsedIngredients.forEach(x => ingredients.push(new Ingredient(x?.optionName, x?.optionPrice)))
+            }
+        } catch (e) {
+            return [];
+        }
+        return ingredients;
     }
 
     const getSrc = (data) => {
@@ -51,6 +83,22 @@ const Details = () => {
         setSause(!sause)
     }
 
+    const handleCheckboxChange = (event, ingredient) => {
+        if (event.target.checked) {
+            console.log('2UePnI8 :: checked ingredient: ', ingredient);
+            setSelectedIngredients([...selectedIngredients, ingredient]);
+
+            details.price = Number(details.price) + Number(ingredient?.optionPrice);
+        } else {
+            console.log('Hvs9E2AS :: selectedIngredients: ', selectedIngredients);
+            setSelectedIngredients(selectedIngredients.filter(item => item !== ingredient));
+            details.price = Number(details.price) - Number(ingredient?.optionPrice);
+
+            console.log('Ohir87NX :: unchecked ingredient: ', ingredient);
+        }
+    };
+
+
     const checkDishInBasket = (details) => {
         const basket = JSON.parse(localStorage.getItem('basket'));
         const basketItem = basket.find(item => item.uuid === details.uuid);
@@ -64,8 +112,7 @@ const Details = () => {
     }
 
 
-
-    const  addDish = () =>  {
+    const addDish = () => {
         setDishChose(!dishChose)
         dishChose ? setAddToggle('-') : setAddToggle('+')
         const basket = localStorage.getItem('basket');
@@ -105,30 +152,17 @@ const Details = () => {
                         <p className='font-sm text-[#262628]/50'>{details.description}</p>
                     </div>
                     <p className='text-base font-bold text-[#FB6D3A]'>Let’s make it better? </p>
-                    <div className='w-full flex items-center justify-between'>
-                        <div className='flex w-full'>
-                            <input id='checkbox' onChange={handleTomatoesChange} type='checkbox'
-                                   className='border-2 border-[#503E9D] w-5 h-5 accent-[#503E9D]'/>
-                            <label for="checkbox" className='text-sm font-bold pl-4'>Extra Tomatoes</label>
+                    {details?.ingredients?.map((ingredient) => (
+                        <div className='w-full flex items-center justify-between'>
+                            <div className='flex w-full'>
+                                <input id='checkbox'  onChange={(event) => handleCheckboxChange(event, ingredient)} type='checkbox'
+                                       className='border-2 border-[#503E9D] w-5 h-5 accent-[#503E9D]'/>
+                                <label htmlFor="checkbox"
+                                       className='text-sm font-bold pl-4'>{ingredient?.optionName}</label>
+                            </div>
+                            <p className='text-base text-[#503E9D] font-bold'>{ingredient?.optionPrice}{tgSymbol}</p>
                         </div>
-                        <p className='text-base text-[#503E9D] font-bold'>$2</p>
-                    </div>
-                    <div className='w-full flex items-center justify-between'>
-                        <div className='flex w-full'>
-                            <input id='checkbox' onChange={handleOliveChanges} type='checkbox'
-                                   className='border-2 border-[#503E9D] w-5 h-5 accent-[#503E9D]'/>
-                            <label for="checkbox" className='text-sm font-bold pl-4'>Extra Olive</label>
-                        </div>
-                        <p className='text-base text-[#503E9D] font-bold'>$2</p>
-                    </div>
-                    <div className='w-full flex items-center justify-between'>
-                        <div className='flex w-full'>
-                            <input id='checkbox' onChange={handleSauseChanges} type='checkbox'
-                                   className='border-2 border-[#503E9D] w-5 h-5 accent-[#503E9D]'/>
-                            <label for="checkbox" className='text-sm font-bold pl-4'>Extra Savory Sause</label>
-                        </div>
-                        <p className='text-base text-[#503E9D] font-bold'>$2</p>
-                    </div>
+                    ))}
                     <div className='w-full flex flex-col space-y-5 pt-10'>
                         <div className='w-full h-14 bg-black/10 flex items-center rounded-xl'>
                             <p className='text-[#A3A3A4] text-3xl pl-5'>+</p>

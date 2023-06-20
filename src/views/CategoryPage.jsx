@@ -1,10 +1,10 @@
 import CategoryHeader from '../components/CategoryHeader';
 import CategoryPageCard from '../components/CategoryPageCard';
 import Navbar from '../components/Navbar';
-import cover from '../images/cover.png'
 import {useEffect, useState} from "react";
 import {createSearchParams, useLocation, useNavigate} from "react-router-dom";
-import {getDishesByCategory, getCategories, getCategoryById} from "../controllers/Controllers";
+import {getCategoryById, getDishesByCategory} from "../controllers/Controllers";
+import {Dish} from "../models/Dish";
 
 const CategoryPage = () => {
     const search = useLocation().search;
@@ -34,22 +34,43 @@ const CategoryPage = () => {
     const fetchDishesByCategory = async (id) => {
         await getDishesByCategory(id)
             .then(res => {
-                setDishes(res.data)
+                const dishes = [];
+
+                res.data.forEach(res => {
+                    let dish = new Dish(
+                        res?.uuid,
+                        res?.active,
+                        res?.amount,
+                        res?.categoryId,
+                        res?.description,
+                        res?.ingredients,
+                        res?.notes,
+                        res?.pictures,
+                        res?.price,
+                        res?.title,
+                    )
+                    dishes.push(dish);
+                });
+
+                setDishes(dishes)
             });
     }
 
     useEffect(() => {
-        fetchCategoryById(id)
+        fetchCategoryById(id).then();
     }, [id])
 
     useEffect(() => {
-        fetchDishesByCategory(id)
+        fetchDishesByCategory(id).then();
     }, [])
 
     const getImageUrl = (data) => {
         try {
             if (data.image !== undefined) {
                 return JSON.parse(data.image)[0]
+            }
+            if(data.pictures !== undefined) {
+                return JSON.parse(data?.pictures)[0];
             }
         } catch (e) {
             console.error('DP8cG :: incorrect image url: ', data.image, '\nError message: ', e)
@@ -63,7 +84,7 @@ const CategoryPage = () => {
             <div className='w-full absolute top-60 rounded-t-3xl h-full bg-[#F7F7F7] px-6'>
                 {dishes.map((dish) => (
                     <div onClick={() => navigateFoodDetails(dish.uuid)}>
-                        <CategoryPageCard key={dish.uuid} title={dish.title} img={JSON.parse(dish.pictures)[0]}/>
+                        <CategoryPageCard key={dish?.uuid} title={dish?.title} img={getImageUrl(dish)}/>
                     </div>
                 ))}
             </div>
