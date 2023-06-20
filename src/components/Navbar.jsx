@@ -9,6 +9,7 @@ const Navbar = () => {
     const navigateToHome = () => navigate(`/${tableId}`)
     const navigateToBasket = () => navigate('/basket')
     const navigateToSearchPage = () => navigate('/searchpage')
+    const navigateToStatus = () => navigate('/status')
     const [tableId, setTableId]  = useState('');
 
     useEffect(() => {
@@ -22,7 +23,7 @@ const Navbar = () => {
                 <img className='w-5 h-5' onClick={navigateToHome} src={home}/>
                 <img className='w-5 h-5' onClick={navigateToSearchPage} src={spoon}/>
                 <img className='w-5 h-5' onClick={navigateToBasket} src={cart}/>
-                <img className='w-5 h-5' src={list}/>
+                <img className='w-5 h-5' onClick={navigateToStatus} src={list}/>
             </div>
         </div>
      );

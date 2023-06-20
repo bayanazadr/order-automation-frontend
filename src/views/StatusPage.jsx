@@ -1,16 +1,17 @@
-import { useState } from 'react';
 import StatusHeader from '../components/StatusHeader';
 import history from '../images/history.png'
+import LoadingWithTimer from '../components/LoadingWithTimer';
 const StatusPage = () => {
     return ( 
         <div className="h-screen flex flex-col bg-[#FACD5D]">
             <div className='rounded-b-3xl w-full h-[700px] space-y-6 bg-[#F7F7F7] px-6'>
                <StatusHeader/>
-            <div className="bg-white w-full h-40 rounded-lg">
+            <div className="bg-white w-full flex flex-col justify-evenly h-40 rounded-lg">
                 <div className='flex justify-center items-center space-x-2'>
                     <img src={history} className='w-5 h-5' />
                 <p className='text-2xl font-bold'>25min</p>
                 </div>
+                <LoadingWithTimer totalTimeInMinutes={25} />
             </div>
             <div className="bg-white w-full h-80 rounded-lg flex flex-col space-y-4">
                 <p className='text-start text-[#FB6D3A] text-base font-bold'>Order Details</p>
