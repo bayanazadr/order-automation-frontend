@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, forwardRef, useImperativeHandle } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-const CreditCardForm = () => {
+const CreditCardForm = forwardRef((props, ref) => {
+  const navigate = useNavigate();
   const [cardNumber, setCardNumber] = useState('');
   const [expiryMonth, setExpiryMonth] = useState('');
   const [expiryYear, setExpiryYear] = useState('');
@@ -14,7 +16,11 @@ const CreditCardForm = () => {
     return sanitizedNumber.length === 16;
 
   };
-
+  useImperativeHandle(ref, () => ({
+    submitForm: () => {
+      handleSubmit({ preventDefault: () => {} });
+    },
+  }));
   const isExpiryDateValid = (month, year) => {
     const currentYear = new Date().getFullYear();
     const currentMonth = new Date().getMonth() + 1;
@@ -55,7 +61,8 @@ const CreditCardForm = () => {
     setErrors(newErrors);
     if (!newErrors.cardNumber && !newErrors.expiryDate && !newErrors.cvc) {
         // Simulate a payment process
-        const paymentProcessed = Math.random() > 0.5; // Random success or failure for demonstration
+        const paymentProcessed = true
+        //const paymentProcessed = Math.random() > 0.5 Random success or failure for demonstration
         setPaymentStatus(paymentProcessed ? 'success' : 'failure');
         setIsModalVisible(true);
     
@@ -69,11 +76,16 @@ const CreditCardForm = () => {
       }
     };
 
+    const handleModalClose = () => {
+      setIsModalVisible(false)
+      navigate("/status")
+    }
+
   const years = Array.from({ length: 10 }, (_, i) => new Date().getFullYear() + i);
 
   return (
     <>
-    <form onSubmit={handleSubmit} className="space-y-2">
+    <form className="space-y-2">
       <div className="flex flex-col">
         <label className="mb-2">Card Number:</label>
         <input
@@ -154,9 +166,7 @@ const CreditCardForm = () => {
         {errors.cvc && <span className="text-red-500">{errors.cvc}</span>}
       </div>
 
-      <button type="submit" className="py-2 px-4 bg-blue-500 text-white rounded hover:bg-blue-700">
-        Submit
-      </button>
+      
     </form>
     {isModalVisible && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
@@ -174,7 +184,7 @@ const CreditCardForm = () => {
             )}
             <button
               className="mt-4 py-2 px-4 bg-green-500 text-white rounded hover:bg-blue-700"
-              onClick={() => setIsModalVisible(false)}
+              onClick={() => handleModalClose()}
             >
               Close
             </button>
@@ -183,6 +193,6 @@ const CreditCardForm = () => {
       )}
       </>
   );
-};
+});
 
 export default CreditCardForm;
