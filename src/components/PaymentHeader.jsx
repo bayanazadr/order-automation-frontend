@@ -4,10 +4,10 @@ import {useEffect, useState} from "react";
 const PaymentHeader = () => {
     const [tableId, setTableId]  = useState('');
     const navigate = useNavigate();
-    const navigateToHome = () => navigate(`/${tableId}`)
+    const navigateToHome = () => navigate(`/basket`)
 
     useEffect(() => {
-        const id = JSON.parse(localStorage.getItem('table_id'));
+        const id = JSON.parse(localStorage.getItem('table_temp_key'));
         setTableId(id);
     }, [tableId])
 

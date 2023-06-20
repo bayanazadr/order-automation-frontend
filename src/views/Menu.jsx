@@ -39,7 +39,7 @@ const Menu = () => {
             .then((res) => {
                 Object.values(res.data.stringSlideMap).map(el => {
                     if (tableId) {
-                        localStorage.setItem('table_id', JSON.stringify(tableId))
+                        localStorage.setItem('table_temp_key', JSON.stringify(tableId))
                     }
 
                     if (el.size === 'wide') {
