@@ -166,7 +166,7 @@ const Details = () => {
                     <div className='w-full flex flex-col space-y-5 pt-10'>
                         <div className='w-full h-14 bg-black/10 flex items-center rounded-xl'>
                             <p className='text-[#A3A3A4] text-3xl pl-5'>+</p>
-                            <p className='text-[#A3A3A4] pl-3 pt-2'>Any special request?</p>
+                            <input className='text-[#A3A3A4] pl-3 pt-2 bg-transparent outline-0 w-full' placeholder='Any special request?' />
                         </div>
                         <div onClick={addDish}
                              className='w-full h-14 bg-[#FB6D3A] flex items-center rounded-xl justify-between'>

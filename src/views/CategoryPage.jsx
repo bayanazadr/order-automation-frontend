@@ -78,9 +78,11 @@ const CategoryPage = () => {
     }
 
     return (
-        <div className='w-full h-[100vh] flex flex-col'>
+        <div className='w-full h-[100vh] flex flex-col items-center'>
             <CategoryHeader/>
-            <img src={getImageUrl(data)}/>
+            <img className='object-cover w-full' src={getImageUrl(data)}/>
+            <h1 className='text-3xl text-center text-white absolute font-bold pt-32'>{data.name}</h1>
+            <h1 className='text-lg text-center text-white absolute pt-40'>{dishes.length} options</h1>
             <div className='w-full absolute top-60 rounded-t-3xl h-full bg-[#F7F7F7] px-6'>
                 {dishes.map((dish) => (
                     <div onClick={() => navigateFoodDetails(dish.uuid)}>

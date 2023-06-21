@@ -14,8 +14,10 @@ const SearchPageHeader = (props) => {
                 <img className="w-4 h-4 absolute top-12 right-10" src={cancel}/>
                 </div>
                 <div className="w-full flex items-center justify-between">
-            <div className="bg-[#FB6D3A] rounded-lg text-xs px-9 py-3 text-white font-medium">Фастфуд {props.count}</div>
-                <div className="text-[#FB6D3A] rounded-lg text-xs px-9 py-3 bg-[#FEE2D8] font-medium">Категория(1)</div>
+            <div className="bg-[#FB6D3A] rounded-lg text-xs px-9 py-3 text-white font-medium">Results {props.count}</div>
+            <div className="text-[#FB6D3A] rounded-lg text-xs px-9 py-3 bg-[#FEE2D8] font-medium">
+            Categories ({props.categoryCount})
+                </div>
                 <div className="w-9 h-10 bg-[#503E9D] flex items-center justify-center rounded-lg ">
                 <img className="w-6 h-6" src={filter}/>
                 </div>
