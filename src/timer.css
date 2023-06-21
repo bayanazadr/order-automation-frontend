@@ -1,0 +1,28 @@
+/* LoadingWithTimer.css */
+.timer-container {
+    position: relative;
+    width: 100%;
+    height: 20px;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  
+  .loading-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background-color: #FB6D3A;
+    transition: width 1s;
+  }
+  
+  .time-left {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 12px;
+    color: black;
+  }
+  

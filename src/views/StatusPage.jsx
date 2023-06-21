@@ -1,6 +1,7 @@
 import {useEffect, useState} from 'react';
 import StatusHeader from '../components/StatusHeader';
 import history from '../images/history.png'
+import LoadingWithTimer from '../components/LoadingWithTimer';
 
 const StatusPage = () => {
     const [baskets, setBaskets] = useState([])

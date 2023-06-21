@@ -49,46 +49,52 @@ const Basket = () => {
     setPrice((prevPrice) => prevPrice - Number(itemPrice));
   };
 
-  return (
-    <div className='w-full h-[100vh] bg-[#503E9D] flex flex-col justify-between'>
-      <div className='bg-white px-6 rounded-b-3xl'>
-        <div className='pb-20'>
-          <BasketHeader/>
-          <div className='w-full flex items-center justify-between'>
-            <p className='text-left text-xl font-bold text-[#FB6D3A] py-5'>Basket</p>
-            <div className='w-20 h-6 bg-[#FB6D3A] flex items-center justify-center rounded'>
-              <p className='text-white text-xs font-medium'>25-30 min</p>
+    return (
+      <div className='w-full h-[100vh] bg-[#503E9D] flex flex-col justify-between'>
+        <div className='bg-white px-6 rounded-b-3xl flex flex-col'>
+          <div className='pt-4'>
+            <BasketHeader/>
+            <div className='w-full flex items-center justify-between'>
+              <p className='text-left text-xl font-bold text-[#FB6D3A] py-5'>Basket</p>
+              <div className='w-20 h-6 bg-[#FB6D3A] flex items-center justify-center rounded'>
+                <p className='text-white text-xs font-medium'>25-30 min</p>
+              </div>
             </div>
           </div>
-          <div className='w-full flex flex-col items-start space-y-5'>
-            {baskets.map((basket) => (
-              <BasketItem
-                key={basket.uuid}
-                basket={basket}
-                onDeleteItem={deleteBasketItem}
-                onIncrementDishCount={incrementDishCount}
-                onReduceDishCount={reduceDishCount}
-              />
-            ))}
+
+          <div className='overflow-y-auto' style={{maxHeight: 'calc(100vh - 180px)'}}>
+            <div className='w-full flex flex-col items-start space-y-5 p-4'>
+              {baskets.map((basket) => (
+                <BasketItem
+                  key={basket.uuid}
+                  basket={basket}
+                  onDeleteItem={deleteBasketItem}
+                  onIncrementDishCount={incrementDishCount}
+                  onReduceDishCount={reduceDishCount}
+                />
+              ))}
+            </div>
+          </div>
+  
+          <div className='pb-4 px-4'>
             <div className='space-x-3 flex items-center justify-center text-[#503E9D] text-base font-semibold h-16' onClick={navigateToSearchPage}>
               <p className='text-3xl pb-2'>+</p>
               <p className='text-lg'>Add more items</p>
             </div>
+            <div className='w-full h-20 flex justify-between items-center'>
+              <div className='flex flex-col items-start'>
+                <p className='text-base font-bold'>Promo code</p>
+                <p className='text-base'>HXFWO</p>
+              </div>
+              <div className='bg-[#979797]/10 h-12 flex items-center justify-center rounded-xl'>
+                <button className='px-2 text-3xl pb-2 font-semibold text-[#503E9D]'>+</button>
+              </div>
+            </div>
           </div>
         </div>
-        <div className='w-full h-20 flex justify-between items-center mb-10'>
-          <div className='flex flex-col items-start'>
-            <p className='text-base font-bold'>Promo code</p>
-            <p className='text-base'>HXFWO</p>
-          </div>
-          <div className='bg-[#979797]/10 h-12 flex items-center justify-center rounded-xl'>
-            <button className='px-2 text-3xl pb-2 font-semibold text-[#503E9D]'>+</button>
-          </div>
-        </div>
+        <BasketPrice data={price}/>
       </div>
-      <BasketPrice data={price}/>
-    </div>
-  );
-}
+    );
+  }
 
 export default Basket;
