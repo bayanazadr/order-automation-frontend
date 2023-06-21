@@ -6,6 +6,7 @@ const BasketItem = ({ basket, onDeleteItem, onIncrementDishCount, onReduceDishCo
 
   useEffect(() => {
     setDishAmount(basket.dishAmount || 1);
+    localStorage.setItem(`amount-${basket.uuid}`, JSON.stringify(basket?.dishAmount || 1));
   }, [basket]);
 
   const deleteBasketItem = () => {
