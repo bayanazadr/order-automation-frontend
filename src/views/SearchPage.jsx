@@ -8,6 +8,8 @@ import {createSearchParams, useNavigate} from "react-router-dom";
 
 const SearchPage = () => {
     const [categories, setCategories] = useState([])
+    const [searchResults, setSearchResults] = useState([]);
+    const [displayCategories, setDisplayCategories] = useState(true);
     const navigate = useNavigate()
 
     const navigateToCategory = (id) => {
@@ -38,6 +40,15 @@ const SearchPage = () => {
     useEffect(() => {
         getCategoriesFromRemote().then()
     }, [])
+    
+    const handleCategoryClick = () => {
+        setDisplayCategories(true);
+      };
+    
+      const handleSearchResultClick = (results) => {
+        setSearchResults(results);
+        setDisplayCategories(false);
+      };
     return (
         <div className="w-full bg-[#FB6D3A] h-36">
             <SearchBar/>
