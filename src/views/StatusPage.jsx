@@ -44,6 +44,7 @@ const StatusPage = () => {
                         <img src={history} className='w-5 h-5'/>
                         <p className='text-4xl font-bold'>25min</p>
                     </div>
+                    <LoadingWithTimer totalTimeInMinutes={25} />
                 </div>
                 <div className="bg-white w-full h-80 rounded-lg flex flex-col space-y-4">
                     <p className='text-start text-[#FB6D3A] text-base font-bold'>Order Details</p>

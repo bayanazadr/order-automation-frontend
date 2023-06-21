@@ -33,10 +33,13 @@ const Promotion = () => {
     }
 
     const getSrc = (data) => {
-        if (data.image === undefined) {
-            return ""
-        } else {
+        if (data.image) {
             return JSON.parse(data.image)[0]
+        }
+        if (data.pictures) {
+            return JSON.parse(data.pictures)[0]
+        } else {
+            return '';
         }
     }
 
@@ -75,6 +78,7 @@ const Promotion = () => {
             name: "Drinks"
         },
     ]
+
     return (
         <div className='w-full h-[100vh] flex flex-col'>
             <PagesHeader/>
@@ -101,7 +105,7 @@ const Promotion = () => {
                         {dishes.map((dish) => (
                             <div onClick={() => navigateFoodDetails(dish.uuid)}
                                  className='w-full h-32 flex bg-white rounded-xl'>
-                                <img src={JSON.parse(dish.pictures)[0]} className='w-2/5 rounded-bl-xl rounded-tl-xl'/>
+                                <img src={getSrc(dish)} className='w-2/5 rounded-bl-xl rounded-tl-xl'/>
                                 <div className='flex flex-col justify-center text-start pl-3 space-y-2'>
                                     <p className='text-sm font-bold'>{dish.title}</p>
                                     <p className='text-sm font-medium text-[#262628] opacity-60'>Pizza features two
