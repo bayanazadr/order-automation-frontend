@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  react-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: react-app
+    ports:
+      - "3000:3000"  # Проброс порта 3000 (или другого, если вы используете другой сервер или прокси)
