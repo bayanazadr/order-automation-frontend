@@ -7,7 +7,7 @@ const StatusPage = () => {
     const [baskets, setBaskets] = useState([])
     const [totalPrice, setTotalPrice] = useState(0)
     const tgSymbol = '₸';
-
+    const timer = 25;
 
     const initBasket = () => {
         const basket = JSON.parse(localStorage.getItem('basket'));
@@ -32,7 +32,7 @@ const StatusPage = () => {
 
     const calculatePrice = (dishId) => {
         const amount = JSON.parse(localStorage
-            .getItem(`amount-${dishId}`) ?? 1000);
+            .getItem(`amount-${dishId}`));
         return baskets.filter(x => x.uuid === dishId).map(x => x.price * amount);
     }
     return (
@@ -44,7 +44,7 @@ const StatusPage = () => {
                         <img src={history} className='w-5 h-5'/>
                         <p className='text-4xl font-bold'>25min</p>
                     </div>
-                    <LoadingWithTimer totalTimeInMinutes={25} />
+                    <LoadingWithTimer totalTimeInMinutes={timer} />
                 </div>
                 <div className="bg-white w-full h-80 rounded-lg flex flex-col space-y-4">
                     <p className='text-start text-[#FB6D3A] text-base font-bold'>Order Details</p>
