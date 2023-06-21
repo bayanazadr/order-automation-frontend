@@ -15,6 +15,7 @@ const BasketItem = ({ basket, onDeleteItem, onIncrementDishCount, onReduceDishCo
   const incrementDishCount = () => {
     let count = Number(dishAmount)
     setDishAmount(++count)
+    localStorage.setItem(`amount-${basket.uuid}`, JSON.stringify(count));
     onIncrementDishCount(basket.price);
   };
 
@@ -22,6 +23,7 @@ const BasketItem = ({ basket, onDeleteItem, onIncrementDishCount, onReduceDishCo
     let count = Number(dishAmount)
     if (count > 1) {
       setDishAmount(--count)
+      localStorage.setItem(`amount-${basket.uuid}`, JSON.stringify(count));
       onReduceDishCount(basket.price);
     } else {
       deleteBasketItem();
